@@ -1,0 +1,14 @@
+{
+  "name": "virtual-pet",
+  "version": "1.0.0",
+  "description": "A virtual pet program using object oriented programming in JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "TB",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.6.0"
+  }
+}
