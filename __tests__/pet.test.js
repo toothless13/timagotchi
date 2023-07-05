@@ -47,4 +47,19 @@ describe('constructor', () => {
         expect(pet.hunger).toBe(5);
         expect(pet.fitness).toBe(7);
     });
+
+    it('increases fitness by 4 when walk is called', () => {
+        const pet = new Pet('Fido');
+        pet.growUp();
+        pet.growUp();
+        pet.walk();
+        expect(pet.fitness).toBe(8);
+    });
+
+    it('doesn\'t allow fitness to go above 10', () => {
+        const pet = new Pet('Fido');
+        pet.growUp();
+        pet.walk();
+        expect(pet.fitness).toBe(10);
+    });
 });

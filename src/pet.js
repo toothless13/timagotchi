@@ -11,6 +11,13 @@ Pet.prototype = {
         this.hunger += 5;
         this.fitness -= 3;
     },
+    walk() {
+        const maxFitness = 10;
+        this.fitness += 4;
+        if (this.fitness > maxFitness) {
+            this.fitness = 10;
+        }
+    }
 }
 
 module.exports = Pet;
