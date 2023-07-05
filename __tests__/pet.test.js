@@ -25,4 +25,26 @@ describe('constructor', () => {
         pet.growUp();
         expect(pet.age).toBe(1);
     });
+
+    it('has a hunger property initially set to 0', () => {
+        const pet = new Pet('Fido');
+
+        expect(typeof pet.hunger).toBe('number');
+        expect(pet.hunger).toBe(0);
+    });
+
+    it('has a fitness property initially set to 10', () => {
+        const pet = new Pet('Fido');
+
+        expect(typeof pet.fitness).toBe('number');
+        expect(pet.fitness).toBe(10);
+    });
+
+    it('adds 5 to hunger property and subtracts 3 from fitness property when growUp is called', () => {
+        const pet = new Pet('Fido');
+
+        pet.growUp();
+        expect(pet.hunger).toBe(5);
+        expect(pet.fitness).toBe(7);
+    });
 });
