@@ -84,3 +84,41 @@ describe('feed', () => {
         expect(kaido.hunger).toBe(0);
     })
 });
+
+describe('checkUp', () => {
+    const kaido = new Pet('Kaido');
+
+    it('returns \'I am hungry AND I need a walk\' when fitness is 3 or less and hunger is 5 or more', () => {
+        kaido.fitness = 3;
+        kaido.hunger = 5;
+        expect(kaido.checkUp()).toBe('I am hungry AND I need a walk');
+        kaido.fitness = 2;
+        kaido.hunger = 6;
+        expect(kaido.checkUp()).toBe('I am hungry AND I need a walk');
+    });
+
+    it('returns \'I need a walk\' when fitness is 3 or less', () => {
+        kaido.fitness = 3;
+        kaido.hunger = 0;
+        expect(kaido.checkUp()).toBe('I need a walk');
+        kaido.fitness = 2;
+        expect(kaido.checkUp()).toBe('I need a walk');
+    });
+
+    it('returns \'I am hungry\' when hunger is 5 or more', () => {
+        kaido.fitness = 4;
+        kaido.hunger = 5;
+        expect(kaido.checkUp()).toBe('I am hungry');
+        kaido.hunger = 6;
+        expect(kaido.checkUp()).toBe('I am hungry');
+    });
+
+    it('returns \'I feel great!\' when fitness is over 3 and hunger is under 5', () => {
+        kaido.fitness = 4;
+        kaido.hunger = 4;
+        expect(kaido.checkUp()).toBe('I feel great!');
+        kaido.fitness = 10;
+        kaido.hunger = 0;
+        expect(kaido.checkUp()).toBe('I feel great!');
+    });
+});
