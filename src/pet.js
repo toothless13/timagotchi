@@ -9,6 +9,9 @@ function Pet(name) {
 }
 
 Pet.prototype = {
+    get isAlive() {
+        return this.fitness > 0 && this.hunger < 10 && this.age < 30;
+    },
     growUp() {
         this.age++;
         this.hunger += 5;

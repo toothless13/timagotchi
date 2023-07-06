@@ -122,3 +122,34 @@ describe('checkUp', () => {
         expect(kaido.checkUp()).toBe('I feel great!');
     });
 });
+
+describe('isAlive', () => {
+    const kaido = new Pet('Kaido');
+
+    it('returns true if fitness is greater than 0, hunger is less than 10 and age is less than 30', () => {
+        expect(kaido.isAlive).toBe(true);
+    });
+
+    it('returns false if fitness is 0 or less', () => {
+        kaido.fitness = 0;
+        expect(kaido.isAlive).toBe(false);
+        kaido.fitness = -1;
+        expect(kaido.isAlive).toBe(false);
+    });
+
+    it('returns false if hunger 10 or over', () => {
+        kaido.fitness = 1;
+        kaido.hunger = 10;
+        expect(kaido.isAlive).toBe(false);
+        kaido.hunger = 11;
+        expect(kaido.isAlive).toBe(false);
+    });
+
+    it('returns false if age is 30 or over', () => {
+        kaido.hunger = 8;
+        kaido.age = 30;
+        expect(kaido.isAlive).toBe(false);
+        kaido.age = 31;
+        expect(kaido.isAlive).toBe(false);
+    });
+});
