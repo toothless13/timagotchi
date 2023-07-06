@@ -164,18 +164,12 @@ describe('errors', () => {
     const kaido = new Pet('Kaido');
     kaido.age = 30;
     it('throws an error when using growUp function if pet is not alive', () => {
-        expect(() => {
-            kaido.growUp()
-        }).toThrow(error);
+        expect(() => kaido.growUp()).toThrow(error);
     });
     it('throws an error when using feed function if pet is not alive', () => {
-        expect(() => {
-            kaido.feed()
-        }).toThrow();
+        expect(() => kaido.feed()).toThrow();
     });
     it('throws an error when using walk function if pet is not alive', () => {
-        expect(() => {
-            kaido.walk()
-        }).toThrow();
+        expect(() => kaido.walk()).toThrow();
     });
 });
