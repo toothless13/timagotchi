@@ -58,4 +58,4 @@ Pet.prototype = {
     }
 }
 
-module.exports = Pet;
+module.exports = {Pet, error};

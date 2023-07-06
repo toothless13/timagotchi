@@ -1,5 +1,6 @@
-const Pet = require('../src/pet');
-const error = new Error('Your pet is no longer alive :(');
+const petObj = require('../src/pet');
+const error = petObj.error;
+const Pet = petObj.Pet;
 
 describe('constructor', () => {
     it('returns an object', () => {
