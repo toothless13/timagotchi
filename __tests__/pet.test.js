@@ -2,68 +2,85 @@ const Pet = require('../src/pet');
 
 describe('constructor', () => {
     it('returns an object', () => {
-        expect(new Pet('Fido')).toBeInstanceOf(Object);
+        expect(new Pet('Kaido')).toBeInstanceOf(Object);
     });
     
     it('sets the name property',() => {
-        const pet = new Pet('Fido');
+        const kaido = new Pet('Kaido');
 
-        expect(pet.name).toEqual('Fido');
+        expect(kaido.name).toEqual('Kaido');
     });
     
     it('has an age property', () => {
-        const pet = new Pet('Fido');
+        const kaido = new Pet('Kaido');
 
-        expect(typeof pet.age).toBe('number');
-        expect(pet.age).toBe(0);
+        expect(typeof kaido.age).toBe('number');
+        expect(kaido.age).toBe(0);
     });
     
     it('has a hunger property initially set to 0', () => {
-        const pet = new Pet('Fido');
+        const kaido = new Pet('Kaido');
 
-        expect(typeof pet.hunger).toBe('number');
-        expect(pet.hunger).toBe(0);
+        expect(typeof kaido.hunger).toBe('number');
+        expect(kaido.hunger).toBe(0);
     });
 
     it('has a fitness property initially set to 10', () => {
-        const pet = new Pet('Fido');
+        const kaido = new Pet('Kaido');
 
-        expect(typeof pet.fitness).toBe('number');
-        expect(pet.fitness).toBe(10);
+        expect(typeof kaido.fitness).toBe('number');
+        expect(kaido.fitness).toBe(10);
     });
 });
 
 describe('growUp', () => {
     it('has a growUp method that increases age by 1', () => {
-        const pet = new Pet('Fido');
+        const kaido = new Pet('Kaido');
         // The next line tested if growUp() was defined and returned a value
-        // expect(pet.growUp()).toBeDefined();
-        pet.growUp();
-        expect(pet.age).toBe(1);
+        // expect(kaido.growUp()).toBeDefined();
+        kaido.growUp();
+        expect(kaido.age).toBe(1);
     });
 
     it('adds 5 to hunger property and subtracts 3 from fitness property when growUp is called', () => {
-        const pet = new Pet('Fido');
+        const kaido = new Pet('Kaido');
 
-        pet.growUp();
-        expect(pet.hunger).toBe(5);
-        expect(pet.fitness).toBe(7);
+        kaido.growUp();
+        expect(kaido.hunger).toBe(5);
+        expect(kaido.fitness).toBe(7);
     });
 });
 
 describe('walk', () => {
+    const kaido = new Pet('Kaido');
+
     it('increases fitness by 4 when walk is called', () => {
-        const pet = new Pet('Fido');
-        pet.growUp();
-        pet.growUp();
-        pet.walk();
-        expect(pet.fitness).toBe(8);
+        kaido.growUp();
+        kaido.growUp();
+        kaido.walk();
+        expect(kaido.fitness).toBe(8);
     });
 
     it('doesn\'t allow fitness to go above 10', () => {
-        const pet = new Pet('Fido');
-        pet.growUp();
-        pet.walk();
-        expect(pet.fitness).toBe(10);
+        kaido.growUp();
+        kaido.walk();
+        kaido.walk();
+        expect(kaido.fitness).toBe(10);
     });
+});
+
+describe('feed', () => {
+    const kaido = new Pet('Kaido');
+
+    it('decreases hunger by 3 when feed is called', () => {
+        kaido.hunger = 10;
+        kaido.feed();
+        expect(kaido.hunger).toBe(7);
+    });
+
+    it('doesn\'t allow hunger to go below 0', () => {
+        kaido.hunger = 2;
+        kaido.feed();
+        expect(kaido.hunger).toBe(0);
+    })
 });
