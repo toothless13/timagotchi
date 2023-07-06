@@ -1,4 +1,5 @@
 const Pet = require('../src/pet');
+const error = new Error('Your pet is no longer alive :(');
 
 describe('constructor', () => {
     it('returns an object', () => {
@@ -55,8 +56,7 @@ describe('walk', () => {
     const kaido = new Pet('Kaido');
 
     it('increases fitness by 4 when walk is called', () => {
-        kaido.growUp();
-        kaido.growUp();
+        kaido.fitness = 4;
         kaido.walk();
         expect(kaido.fitness).toBe(8);
     });
@@ -73,9 +73,9 @@ describe('feed', () => {
     const kaido = new Pet('Kaido');
 
     it('decreases hunger by 3 when feed is called', () => {
-        kaido.hunger = 10;
+        kaido.hunger = 9;
         kaido.feed();
-        expect(kaido.hunger).toBe(7);
+        expect(kaido.hunger).toBe(6);
     });
 
     it('doesn\'t allow hunger to go below 0', () => {
@@ -121,6 +121,11 @@ describe('checkUp', () => {
         kaido.hunger = 0;
         expect(kaido.checkUp()).toBe('I feel great!');
     });
+
+    it('returns \'Your pet is no longer alive :(\' if your pet has passed away', () => {
+        kaido.age = 30;
+        expect(kaido.checkUp()).toBe('Your pet is no longer alive :(');
+    });
 });
 
 describe('isAlive', () => {
@@ -151,5 +156,25 @@ describe('isAlive', () => {
         expect(kaido.isAlive).toBe(false);
         kaido.age = 31;
         expect(kaido.isAlive).toBe(false);
+    });
+});
+
+describe('errors', () => {
+    const kaido = new Pet('Kaido');
+    kaido.age = 30;
+    it('throws an error when using growUp function if pet is not alive', () => {
+        expect(() => {
+            kaido.growUp()
+        }).toThrow(error);
+    });
+    it('throws an error when using feed function if pet is not alive', () => {
+        expect(() => {
+            kaido.feed()
+        }).toThrow();
+    });
+    it('throws an error when using walk function if pet is not alive', () => {
+        expect(() => {
+            kaido.walk()
+        }).toThrow();
     });
 });
