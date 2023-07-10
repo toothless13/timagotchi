@@ -160,6 +160,27 @@ describe('isAlive', () => {
     });
 });
 
+// First method
+describe('having a baby', () => {
+    const parent = new Pet('Parent');
+    const child = new Pet('Child');
+    parent.adoptChild(child);
+    it('adds the child instance to the children property of the parent instance', () => {
+        expect(parent.children).toEqual(expect.arrayContaining([child]));
+    });
+});
+
+// Second method
+describe('having a baby', () => {
+    const parent = new Pet('Parent');
+    parent.haveBaby('Amelia');
+    it('creates a new Pet instance and adds it to the children property of the parent instance', () => {
+        expect(parent.children[0]).toBeInstanceOf(Pet);
+        expect(parent.children[0].name).toBe('Amelia');
+    });
+
+});
+
 describe('errors', () => {
     const kaido = new Pet('Kaido');
     kaido.age = 30;
@@ -172,11 +193,4 @@ describe('errors', () => {
     it('throws an error when using walk function if pet is not alive', () => {
         expect(() => kaido.walk()).toThrow();
     });
-});
-
-describe('having a baby', () => {
-    const parent = new Pet('Parent');
-    const child = new Pet('Child');
-    parent.adoptChild(child);
-    expect(parent.children).toEqual(expect.arrayContaining([child]));
 });

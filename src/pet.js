@@ -59,6 +59,9 @@ Pet.prototype = {
     },
     adoptChild(child) {
         this.children.push(child);
+    },
+    haveBaby(name) {
+        return this.children.push(new Pet(name));
     }
 }
 
