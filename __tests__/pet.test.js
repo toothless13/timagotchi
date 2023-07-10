@@ -173,3 +173,10 @@ describe('errors', () => {
         expect(() => kaido.walk()).toThrow();
     });
 });
+
+describe('having a baby', () => {
+    const parent = new Pet('Parent');
+    const child = new Pet('Child');
+    parent.adoptChild(child);
+    expect(parent.children).toEqual(expect.arrayContaining([child]));
+});
