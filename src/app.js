@@ -16,7 +16,8 @@ class Pet {
     growUp() {
         if(!this.isAlive) {
             // throw error;
-            console.log('Your pet is no longer alive :(')
+            // console.log('Your pet is no longer alive :(')
+            return 'Your pet is no longer alive :(';
         }
         this.age++;
         this.hunger += 5;
@@ -25,7 +26,8 @@ class Pet {
     walk() {
         if(!this.isAlive) {
             // throw error;
-            console.log('Your pet is no longer alive :(')
+            // console.log('Your pet is no longer alive :(')
+            return 'Your pet is no longer alive :(';
         }
         if(this.fitness + 4 > MAX_FITNESS) {
             this.fitness = MAX_FITNESS;
@@ -36,7 +38,8 @@ class Pet {
     feed() {
         if(!this.isAlive) {
             // throw error;
-            console.log('Your pet is no longer alive :(')
+            // console.log('Your pet is no longer alive :(')
+            return 'Your pet is no longer alive :(';
         }
         if(this.hunger - 3 < MIN_HUNGER) {
             this.hunger = MIN_HUNGER;
@@ -69,14 +72,18 @@ class Pet {
 
 let petName;
 const petDiv = document.querySelector('.petScreen');
+const petConsole = document.querySelector('.petConsole');
 const gameButtons = document.querySelectorAll('.gameButtons');
 const growUpButton = document.querySelector('.growUpButton');
 const feedButton = document.querySelector('.feedButton');
 const walkButton = document.querySelector('.walkButton');
+const consoleCase = document.querySelector('.consoleCasing');
 // Hide the game buttons
 gameButtons.forEach(button => button.style.display = 'none');
 // Hide the pet screen
 petDiv.style.display = 'none';
+petConsole.style.display = 'none';
+consoleCase.style.display = 'none'
 
 let chooseNameButton = document.querySelector('#chooseName');
 chooseNameButton.addEventListener('click', () => {
@@ -90,13 +97,15 @@ chooseNameButton.addEventListener('click', () => {
     // console.log(pet.isAlive);
     // Display the petScreen
     petDiv.style.display = 'block';
+    petConsole.style.display = 'block';
+    consoleCase.style.display = 'block';
     // Display the game buttons
     gameButtons.forEach(button => button.style.display = 'flex');
     
     // Grow up functionality
-    growUpButton.addEventListener('click', () => {
+    growUpButton.addEventListener('click', function petGrowUp () {
         pet.growUp();
-        console.log(pet);
+        // console.log(pet);
         petDiv.innerHTML = `<p>
         Name: ${pet.name}<br>
         Age: ${pet.age}<br>
@@ -106,26 +115,37 @@ chooseNameButton.addEventListener('click', () => {
         if(!pet.isAlive) {
             petDiv.innerHTML = `<p>Sadly, ${pet.name} has passed away :(</p>`;
             // Hide the game buttons
-            gameButtons.forEach(button => button.style.display = 'none');
+            // gameButtons.forEach(button => button.style.display = 'none');
+            // growUpButton.removeEventListener('click', petGrowUp);
+            // feedButton.removeEventListener('click', petFeed);
+            // walkButton.removeEventListener('click', petWalk);
         }
     });
     // Feed functionality
-    feedButton.addEventListener('click', () => {
+    feedButton.addEventListener('click', function petFeed () {
         pet.feed();
         petDiv.innerHTML = `<p>
         Name: ${pet.name}<br>
         Age: ${pet.age}<br>
         Hunger Level: ${pet.hunger}<br>
         Fitness Level: ${pet.fitness}</p>`;
+
+        if(!pet.isAlive) {
+            petDiv.innerHTML = `<p>Sadly, ${pet.name} has passed away :(</p>`;
+        }
     });
     // Walk functionality
-    walkButton.addEventListener('click', () => {
+    walkButton.addEventListener('click', function petWalk () {
         pet.walk();
         petDiv.innerHTML = `<p>
         Name: ${pet.name}<br>
         Age: ${pet.age}<br>
         Hunger Level: ${pet.hunger}<br>
         Fitness Level: ${pet.fitness}</p>`;
+
+        if(!pet.isAlive) {
+            petDiv.innerHTML = `<p>Sadly, ${pet.name} has passed away :(</p>`;
+        }
     });
 
 
