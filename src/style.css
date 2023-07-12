@@ -9,20 +9,38 @@ h1 {
     padding: 3rem;
     text-align: center;
     font-size: 4rem;
+    color: rgb(9, 17, 94);
+    font-weight: 700;
+}
+
+body {
+    background-color: rgb(219, 224, 226);
 }
 
 .chooseName {
     margin: 0 auto;
-    padding: 3rem;
+    padding: 2rem 1rem;
     display: block;
-    width: 50%;
+    width: 30%;
     text-align: center;
+    color: rgb(219, 224, 226);
+    background-color: rgb(9, 17, 94);
+    border: 2px solid rgb(9, 17, 94);
+    border-radius: 10px;
+    margin-bottom: 4rem;
+    text-decoration: none;
+}
+
+.chooseName:hover {
+    background-color: rgb(219, 224, 226);
+    color: rgb(9, 17, 94);
+    border: 2px solid rgb(9, 17, 94);
 }
 
 .consoleCasing {
-    background-color: rgb(16, 34, 194);
+    background-color: rgb(9, 17, 94);
     border-radius: 5%;
-    width: 20vw;
+    width: 27rem;
     padding: 3rem;
     margin: 0 auto;
     height: 30vh;
@@ -38,6 +56,7 @@ h1 {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    height: fit-content;
 }
 
 .petScreen {
@@ -78,6 +97,14 @@ h1 {
 
 .btn {
     /* margin: 0 auto; */
-    width: 30%;
+    width: 40%;
     white-space: nowrap;
+}
+
+.gameInfo {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 4rem;
+    text-align: center;
+    color: rgb(9, 17, 94);
 }
