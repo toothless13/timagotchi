@@ -109,3 +109,37 @@ body {
     text-align: center;
     color: rgb(9, 17, 94);
 }
+
+
+@media screen and (max-width: 320px) {
+
+    h1 {
+        width: 100%;
+        font-size: 3rem;
+        padding: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .chooseName {
+        width: 90%;
+    }
+
+    .consoleCasing {
+        width: 90%;
+        padding: 3rem 1rem;
+        height: fit-content;
+    }
+
+    .petScreen {
+        height: 18vh;
+    }
+
+    .petContainer {
+        height: 18vh;
+        /* align-items: start; */
+    }
+
+    .gameInfo {
+        width: 80%;
+    }
+}
