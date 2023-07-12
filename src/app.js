@@ -1,4 +1,4 @@
-const MAX_FITNESS = 10;
+const MAX_FITNESS = 20;
 const MIN_HUNGER = 0;
 const error = new Error('Your pet is no longer alive :(');
 
@@ -6,16 +6,18 @@ class Pet {
     constructor(name) {
         this.name = name;
         this.age = 0;
-        this.hunger = MIN_HUNGER;
-        this.fitness = MAX_FITNESS;
+        this.hunger = 0;
+        this.fitness = 20;
         this.children = [];
     }
     get isAlive() {
-        return this.fitness > 0 && this.hunger < 10 && this.age < 30;
+        return this.fitness > 0 && this.hunger < 20 && this.age < 30;
     }
     growUp() {
         if(!this.isAlive) {
-            throw error;
+            // throw error;
+            // console.log('Your pet is no longer alive :(')
+            return 'Your pet is no longer alive :(';
         }
         this.age++;
         this.hunger += 5;
@@ -23,7 +25,9 @@ class Pet {
     }
     walk() {
         if(!this.isAlive) {
-            throw error;
+            // throw error;
+            // console.log('Your pet is no longer alive :(')
+            return 'Your pet is no longer alive :(';
         }
         if(this.fitness + 4 > MAX_FITNESS) {
             this.fitness = MAX_FITNESS;
@@ -33,7 +37,9 @@ class Pet {
     }
     feed() {
         if(!this.isAlive) {
-            throw error;
+            // throw error;
+            // console.log('Your pet is no longer alive :(')
+            return 'Your pet is no longer alive :(';
         }
         if(this.hunger - 3 < MIN_HUNGER) {
             this.hunger = MIN_HUNGER;
@@ -65,13 +71,110 @@ class Pet {
 }
 
 let petName;
+const petDiv = document.querySelector('.petScreen');
+const petConsole = document.querySelector('.petConsole');
+const gameButtons = document.querySelectorAll('.gameButtons');
+// const growUpButton = document.querySelector('.growUpButton');
+const feedButton = document.querySelector('.feedButton');
+const walkButton = document.querySelector('.walkButton');
+const consoleCase = document.querySelector('.consoleCasing');
+const petImage = document.querySelector('.petImage');
+const deathImage = document.querySelector('.deathImage');
+// Hide the game buttons
+gameButtons.forEach(button => button.style.display = 'none');
+// Hide the pet screen
+petDiv.style.display = 'none';
+petConsole.style.display = 'none';
+consoleCase.style.display = 'none'
+deathImage.style.display = 'none';
+
 let chooseNameButton = document.querySelector('#chooseName');
 chooseNameButton.addEventListener('click', () => {
     petName = window.prompt('Please enter your pet\'s name:');
     const pet = new Pet(petName);
+    petDiv.innerHTML = `<p>
+    Name: ${pet.name}<br>
+    Age: ${pet.age}<br>
+    Hunger Level: ${pet.hunger}<br>
+    Fitness Level: ${pet.fitness}</p>`;
+    // console.log(pet.isAlive);
+    // Display the petScreen
+    chooseNameButton.style.display = 'none';
+    petDiv.style.display = 'block';
+    petConsole.style.display = 'block';
+    consoleCase.style.display = 'block';
+    // Display the game buttons
+    gameButtons.forEach(button => button.style.display = 'flex');
+    
+    // Grow up functionality
+    // growUpButton.addEventListener('click', function petGrowUp () {
+    //     pet.growUp();
+    //     // console.log(pet);
+    //     petDiv.innerHTML = `<p>
+    //     Name: ${pet.name}<br>
+    //     Age: ${pet.age}<br>
+    //     Hunger Level: ${pet.hunger}<br>
+    //     Fitness Level: ${pet.fitness}</p>`;
+
+    //     if(!pet.isAlive) {
+    //         petDiv.innerHTML = `<p>Sadly, ${pet.name} has passed away :(</p>`;
+    //         // Hide the game buttons
+    //         // gameButtons.forEach(button => button.style.display = 'none');
+    //         // growUpButton.removeEventListener('click', petGrowUp);
+    //         // feedButton.removeEventListener('click', petFeed);
+    //         // walkButton.removeEventListener('click', petWalk);
+    //     }
+    // });
+
+    // Feed functionality
+    feedButton.addEventListener('click', function petFeed () {
+        pet.feed();
+        petDiv.innerHTML = `<p>
+        Name: ${pet.name}<br>
+        Age: ${pet.age}<br>
+        Hunger Level: ${pet.hunger}<br>
+        Fitness Level: ${pet.fitness}</p>`;
+
+        if(!pet.isAlive) {
+            petDiv.innerHTML = `<p>Sadly, ${pet.name} has passed away :(</p>`;
+            petImage.style.display = 'none';
+            deathImage.style.display = 'flex';
+            return 'Your pet is no longer alive :(';
+        }
+    });
+    // Walk functionality
+    walkButton.addEventListener('click', function petWalk () {
+        pet.walk();
+        petDiv.innerHTML = `<p>
+        Name: ${pet.name}<br>
+        Age: ${pet.age}<br>
+        Hunger Level: ${pet.hunger}<br>
+        Fitness Level: ${pet.fitness}</p>`;
+
+        if(!pet.isAlive) {
+            petDiv.innerHTML = `<p>Sadly, ${pet.name} has passed away :(</p>`;
+            petImage.style.display = 'none';
+            deathImage.style.display = 'flex';
+            return 'Your pet is no longer alive :(';
+        }
+    });
+
+    setInterval(function petGrowUp () {
+        pet.growUp();
+        petDiv.innerHTML = `<p>
+        Name: ${pet.name}<br>
+        Age: ${pet.age}<br>
+        Hunger Level: ${pet.hunger}<br>
+        Fitness Level: ${pet.fitness}</p>`;
+
+        if(!pet.isAlive) {
+            petDiv.innerHTML = `<p>Sadly, ${pet.name} has passed away :(</p>`;
+            petImage.style.display = 'none';
+            deathImage.style.display = 'flex';
+            return 'Your pet is no longer alive :(';
+        }
+    }, 3000);
+
     console.log(pet);
-    return pet;
+    return;
 });
-
-
-console.log(petName);
