@@ -43,7 +43,7 @@ body {
     width: 27rem;
     padding: 3rem;
     margin: 0 auto;
-    height: 30vh;
+    height: 25rem;
 }
 
 /* .petConsole {
@@ -65,7 +65,7 @@ body {
     width: 50%;
     /* margin: 0 auto; */
     margin-left: 1rem;
-    height: 12vh;
+    height: 12rem;
 }
 
 .petImage,
@@ -73,7 +73,7 @@ body {
     background-color: rgb(239, 252, 210);
     /* width: 100%; */
     margin: 0 auto;
-    height: 12vh;
+    height: 12rem;
     display: flex;
     align-items: center;
 }
@@ -111,7 +111,7 @@ body {
 }
 
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 480px) {
 
     h1 {
         width: 100%;
@@ -126,20 +126,26 @@ body {
 
     .consoleCasing {
         width: 90%;
-        padding: 3rem 1rem;
+        padding: 3rem 2rem;
         height: fit-content;
     }
 
     .petScreen {
-        height: 18vh;
+        height: 16rem;
     }
 
     .petContainer {
-        height: 18vh;
+        height: 16rem;
         /* align-items: start; */
     }
 
     .gameInfo {
         width: 80%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .consoleCasing {
+        padding: 3rem 2rem;
     }
 }
