@@ -78,12 +78,15 @@ const gameButtons = document.querySelectorAll('.gameButtons');
 const feedButton = document.querySelector('.feedButton');
 const walkButton = document.querySelector('.walkButton');
 const consoleCase = document.querySelector('.consoleCasing');
+const petImage = document.querySelector('.petImage');
+const deathImage = document.querySelector('.deathImage');
 // Hide the game buttons
 gameButtons.forEach(button => button.style.display = 'none');
 // Hide the pet screen
 petDiv.style.display = 'none';
 petConsole.style.display = 'none';
 consoleCase.style.display = 'none'
+deathImage.style.display = 'none';
 
 let chooseNameButton = document.querySelector('#chooseName');
 chooseNameButton.addEventListener('click', () => {
@@ -134,6 +137,8 @@ chooseNameButton.addEventListener('click', () => {
 
         if(!pet.isAlive) {
             petDiv.innerHTML = `<p>Sadly, ${pet.name} has passed away :(</p>`;
+            petImage.style.display = 'none';
+            deathImage.style.display = 'flex';
             return 'Your pet is no longer alive :(';
         }
     });
@@ -148,6 +153,8 @@ chooseNameButton.addEventListener('click', () => {
 
         if(!pet.isAlive) {
             petDiv.innerHTML = `<p>Sadly, ${pet.name} has passed away :(</p>`;
+            petImage.style.display = 'none';
+            deathImage.style.display = 'flex';
             return 'Your pet is no longer alive :(';
         }
     });
@@ -162,6 +169,8 @@ chooseNameButton.addEventListener('click', () => {
 
         if(!pet.isAlive) {
             petDiv.innerHTML = `<p>Sadly, ${pet.name} has passed away :(</p>`;
+            petImage.style.display = 'none';
+            deathImage.style.display = 'flex';
             return 'Your pet is no longer alive :(';
         }
     }, 3000);

@@ -68,7 +68,8 @@ body {
     height: 12vh;
 }
 
-.petImage {
+.petImage,
+.deathImage {
     background-color: rgb(239, 252, 210);
     /* width: 100%; */
     margin: 0 auto;
